@@ -87,20 +87,20 @@
     <div class="container">
         <h1 class="logo">PAGOTROPPO.IT</h1>
         <h2 class="subtitle">Calcolatore del costo al kWh in bolletta</h2>
-        <label for="costoMateria">Costo Materia Energia (presente in bolletta, senza oneri, trasporto, ecc.)</label>
-        <input type="number" id="costoMateria" placeholder="€" step="0.01">
         <label for="fornitore">Attuale Fornitore?</label>
-        <input type="text" id="fornitore" placeholder="Fornitore">
+        <input type="text" id="fornitore" placeholder="Fornitore" required>
+        <label for="costoMateria">Costo Materia Energia (presente in bolletta, senza oneri, trasporto, ecc.)</label>
+        <input type="number" id="costoMateria" placeholder="€" step="0.01" required>
         <div class="radio-group">
             <label>
-                <input type="radio" name="tipoBolletta" value="mensile" checked> Mensile
+                <input type="radio" name="tipoBolletta" value="mensile"> Mensile
             </label>
             <label>
-                <input type="radio" name="tipoBolletta" value="bimestrale"> Bimestrale
+                <input type="radio" name="tipoBolletta" value="bimestrale" checked> Bimestrale
             </label>
         </div>
         <label for="kwFatturati">Kilowatt Fatturati</label>
-        <input type="number" id="kwFatturati" placeholder="kWh" step="0.01">
+        <input type="number" id="kwFatturati" placeholder="kWh" step="0.01" required>
         <button onclick="calcolaCostoPerKWh()">Calcola</button>
         <p class="cta-text">Ok.. Ora vuoi sapere se stai pagando troppo? Invia il risultato via email o via WhatsApp</p>
         <div class="results">
@@ -108,7 +108,7 @@
             <p id="risultatoNetto"></p>
         </div>
         <label for="nomeCognome">Nome e Cognome</label>
-        <input type="text" id="nomeCognome" placeholder="Nome e Cognome">
+        <input type="text" id="nomeCognome" placeholder="Nome e Cognome" required>
         <button id="inviaWhatsApp" onclick="inviaWhatsApp()" disabled>Invia via WhatsApp</button>
         <button id="inviaEmail" onclick="inviaRisultato()" disabled>Invia Risultato via Email</button>
     </div>
@@ -116,7 +116,6 @@
     <script>
         function calcolaCostoPerKWh() {
             const costoMateria = parseFloat(document.getElementById('costoMateria').value);
-            const tipoBolletta = document.querySelector('input[name="tipoBolletta"]:checked').value;
             const kwFatturati = parseFloat(document.getElementById('kwFatturati').value);
 
             if (isNaN(costoMateria) || isNaN(kwFatturati) || kwFatturati <= 0) {
@@ -124,14 +123,7 @@
                 return;
             }
 
-            let sconto = 0;
-            if (tipoBolletta === 'mensile') {
-                sconto = 10;
-            } else if (tipoBolletta === 'bimestrale') {
-                sconto = 20;
-            }
-
-            const costoFinale = (costoMateria - sconto) / kwFatturati;
+            const costoFinale = costoMateria / kwFatturati;
             const costoNetto = costoFinale * 0.9;
 
             document.getElementById('risultato').innerText = `Costo per kWh: €${costoFinale.toFixed(2)}`;
