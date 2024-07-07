@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcolatore Costo Energia</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+        }
+        h1.logo {
+            text-align: center;
+            font-size: 2em;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+        h2.subtitle {
+            text-align: center;
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="number"],
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .radio-group {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .radio-group label {
+            margin: 0 10px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        button:hover:not(:disabled) {
+            background-color: #0056b3;
+        }
+        .results {
+            margin-top: 20px;
+        }
+        .cta-text {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="logo">PAGOTROPPO.IT</h1>
+        <h2 class="subtitle">Calcolatore del costo al kWh in bolletta</h2>
+        <label for="costoMateria">Costo Materia Energia (presente in bolletta, senza oneri, trasporto, ecc.)</label>
+        <input type="number" id="costoMateria" placeholder="€" step="0.01">
+        <label for="fornitore">Attuale Fornitore?</label>
+        <input type="text" id="fornitore" placeholder="Fornitore">
+        <div class="radio-group">
+            <label>
+                <input type="radio" name="tipoBolletta" value="mensile" checked> Mensile
+            </label>
+            <label>
+                <input type="radio" name="tipoBolletta" value="bimestrale"> Bimestrale
+            </label>
+        </div>
+        <label for="kwFatturati">Kilowatt Fatturati</label>
+        <input type="number" id="kwFatturati" placeholder="kWh" step="0.01">
+        <button onclick="calcolaCostoPerKWh()">Calcola</button>
+        <p class="cta-text">Ok.. Ora vuoi sapere se stai pagando troppo? Invia il risultato via email o via WhatsApp</p>
+        <div class="results">
+            <p id="risultato"></p>
+            <p id="risultatoNetto"></p>
+        </div>
+        <label for="nomeCognome">Nome e Cognome</label>
+        <input type="text" id="nomeCognome" placeholder="Nome e Cognome">
+        <button id="inviaWhatsApp" onclick="inviaWhatsApp()" disabled>Invia via WhatsApp</button>
+        <button id="inviaEmail" onclick="inviaRisultato()" disabled>Invia Risultato via Email</button>
+    </div>
+
+    <script>
+        function calcolaCostoPerKWh() {
+            const costoMateria = parseFloat(document.getElementById('costoMateria').value);
+            const tipoBolletta = document.querySelector('input[name="tipoBolletta"]:checked').value;
+            const kwFatturati = parseFloat(document.getElementById('kwFatturati').value);
+
+            if (isNaN(costoMateria) || isNaN(kwFatturati) || kwFatturati <= 0) {
+                alert("Inserisci valori validi.");
+                return;
+            }
+
+            let sconto = 0;
+            if (tipoBolletta === 'mensile') {
+                sconto = 10;
+            } else if (tipoBolletta === 'bimestrale') {
+                sconto = 20;
+            }
+
+            const costoFinale = (costoMateria - sconto) / kwFatturati;
+            const costoNetto = costoFinale * 0.9;
+
+            document.getElementById('risultato').innerText = `Costo per kWh: €${costoFinale.toFixed(2)}`;
+            document.getElementById('risultatoNetto').innerText = `Costo per kWh al netto delle perdite di rete: €${costoNetto.toFixed(2)}`;
+
+            verificaCampi();
+        }
+
+        function inviaRisultato() {
+            const email = 'commerciale@ddm-soluzioni.it';
+            const nomeCognome = document.getElementById('nomeCognome').value;
+            const fornitore = document.getElementById('fornitore').value;
+            const risultato = document.getElementById('risultato').innerText;
+            const risultatoNetto = document.getElementById('risultatoNetto').innerText;
+
+            const corpoEmail = `
+                Nome e Cognome: ${nomeCognome}\n
+                Attuale Fornitore: ${fornitore}\n
+                Risultato: ${risultato}\n
+                ${risultatoNetto}\n
+                Posso risparmiare??
+            `;
+
+            window.location.href = `mailto:${email}?subject=Risultato Calcolatore Energia&body=${encodeURIComponent(corpoEmail)}`;
+        }
+
+        function inviaWhatsApp() {
+            const nomeCognome = document.getElementById('nomeCognome').value;
+            const fornitore = document.getElementById('fornitore').value;
+            const risultato = document.getElementById('risultato').innerText;
+            const risultatoNetto = document.getElementById('risultatoNetto').innerText;
+
+            const testoWhatsApp = `Nome e Cognome: ${nomeCognome}\nAttuale Fornitore: ${fornitore}\n${risultato}\n${risultatoNetto}\nPosso risparmiare??`;
+
+            const numeroWhatsApp = '393346395727';
+            window.open(`https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(testoWhatsApp)}`, '_blank');
+        }
+
+        function verificaCampi() {
+            const nomeCognome = document.getElementById('nomeCognome').value;
+            const fornitore = document.getElementById('fornitore').value;
+            const risultato = document.getElementById('risultato').innerText;
+            const risultatoNetto = document.getElementById('risultatoNetto').innerText;
+
+            const emailButton = document.getElementById('inviaEmail');
+            const whatsappButton = document.getElementById('inviaWhatsApp');
+
+            if (nomeCognome && fornitore && risultato && risultatoNetto) {
+                emailButton.disabled = false;
+                whatsappButton.disabled = false;
+            } else {
+                emailButton.disabled = true;
+                whatsappButton.disabled = true;
+            }
+        }
+
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', verificaCampi);
+        });
+    </script>
+</body>
+</html>
