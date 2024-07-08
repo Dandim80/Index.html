@@ -139,39 +139,60 @@
     </div>
 
     <script>
-        function calcolaCostoPerKWh() {
-            const costoMateria = parseFloat(document.getElementById('costoMateriaEnergia').value);
-            const kwFatturati = parseFloat(document.getElementById('kwFatturati').value);
+ function calcolaCostoPerKWh() {
+    const costoMateria = parseFloat(document.getElementById('costoMateriaEnergia').value);
+    const kwFatturati = parseFloat(document.getElementById('kwFatturati').value);
+    const tipoBollettaEnergia = document.querySelector('input[name="tipoBollettaEnergia"]:checked').value;
 
-            if (isNaN(costoMateria) || isNaN(kwFatturati) || kwFatturati <= 0) {
-                alert("Inserisci valori validi per l'energia.");
-                return;
-            }
+    if (isNaN(costoMateria) || isNaN(kwFatturati) || kwFatturati <= 0) {
+        alert("Inserisci valori validi per l'energia.");
+        return;
+    }
 
-            const costoFinale = costoMateria / kwFatturati;
-            const costoNetto = costoFinale * 0.9;
+    // Sottrazione dell'importo fisso in base alla frequenza della bolletta
+    const importoFisso = tipoBollettaEnergia === 'mensile' ? 10 : 20;
+    const costoEffettivo = costoMateria - importoFisso;
 
-            document.getElementById('risultatoEnergia').innerText = `Costo per kWh - già considerate le spese di commercializzazione: €${costoFinale.toFixed(2)}`;
-            document.getElementById('risultatoNettoEnergia').innerText = `Costo per kWh al netto delle perdite di rete - già considerate le spese di commercializzazione: €${costoNetto.toFixed(2)}`;
+    if (costoEffettivo <= 0) {
+        alert("Il costo effettivo non può essere zero o negativo. Verifica i dati inseriti.");
+        return;
+    }
 
-            verificaCampi();
-        }
+    const costoFinale = costoEffettivo / kwFatturati;
+    const costoNetto = costoFinale * 0.9;
+
+    document.getElementById('risultatoEnergia').innerText = `Costo per kWh - già considerate le spese di commercializzazione: €${costoFinale.toFixed(2)}`;
+    document.getElementById('risultatoNettoEnergia').innerText = `Costo per kWh al netto delle perdite di rete - già considerate le spese di commercializzazione: €${costoNetto.toFixed(2)}`;
+
+    verificaCampi();
+}
+
 
         function calcolaCostoPerMc() {
-            const costoMateria = parseFloat(document.getElementById('costoMateriaGas').value);
-            const mcFatturati = parseFloat(document.getElementById('mcFatturati').value);
+    const costoMateria = parseFloat(document.getElementById('costoMateriaGas').value);
+    const mcFatturati = parseFloat(document.getElementById('mcFatturati').value);
+    const tipoBollettaGas = document.querySelector('input[name="tipoBollettaGas"]:checked').value;
 
-            if (isNaN(costoMateria) || isNaN(mcFatturati) || mcFatturati <= 0) {
-                alert("Inserisci valori validi per il gas.");
-                return;
-            }
+    if (isNaN(costoMateria) || isNaN(mcFatturati) || mcFatturati <= 0) {
+        alert("Inserisci valori validi per il gas.");
+        return;
+    }
 
-            const costoFinale = costoMateria / mcFatturati;
+    // Sottrazione dell'importo fisso in base alla frequenza della bolletta
+    const importoFisso = tipoBollettaGas === 'mensile' ? 10 : 20;
+    const costoEffettivo = costoMateria - importoFisso;
 
-            document.getElementById('risultatoGas').innerText = `Costo per mc - già considerate le spese di commercializzazione: €${costoFinale.toFixed(2)}`;
+    if (costoEffettivo <= 0) {
+        alert("Il costo effettivo non può essere zero o negativo. Verifica i dati inseriti.");
+        return;
+    }
 
-            verificaCampi();
-        }
+    const costoFinale = costoEffettivo / mcFatturati;
+
+    document.getElementById('risultatoGas').innerText = `Costo per mc - già considerate le spese di commercializzazione: €${costoFinale.toFixed(2)}`;
+
+    verificaCampi();
+}
 
         function inviaRisultato() {
     const email = 'd.dimauro@ddm-soluzioni.it';
