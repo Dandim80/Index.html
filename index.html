@@ -185,9 +185,9 @@
             const corpoEmail = `
                 Nome e Cognome: ${nomeCognome}\n
                 Attuale Fornitore Energia: ${fornitoreEnergia}\n
-                Attuale Fornitore Gas: ${fornitoreGas}\n
                 Risultato Energia: ${risultatoEnergia}\n
                 ${risultatoNettoEnergia}\n
+                Attuale Fornitore Gas: ${fornitoreGas}\n
                 Risultato Gas: ${risultatoGas}\n
                 Posso risparmiare??
             `;
@@ -203,7 +203,7 @@
             const risultatoNettoEnergia = document.getElementById('risultatoNettoEnergia').innerText;
             const risultatoGas = document.getElementById('risultatoGas').innerText;
 
-            const testoWhatsApp = `Nome e Cognome: ${nomeCognome}\nAttuale Fornitore Energia: ${fornitoreEnergia}\nAttuale Fornitore Gas: ${fornitoreGas}\n${risultatoEnergia}\n${risultatoNettoEnergia}\n${risultatoGas}\nPosso risparmiare??`;
+            const testoWhatsApp = `Nome e Cognome: ${nomeCognome}\nAttuale Fornitore Energia: ${fornitoreEnergia}\n${risultatoEnergia}\n${risultatoNettoEnergia}\nAttuale Fornitore Gas: ${fornitoreGas}\n${risultatoGas}\nPosso risparmiare??`;
 
             const numeroWhatsApp = '393346395727';
             window.open(`https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(testoWhatsApp)}`, '_blank');
