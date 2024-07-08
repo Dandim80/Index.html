@@ -174,40 +174,56 @@
         }
 
         function inviaRisultato() {
-            const email = 'd.dimauro@ddm-soluzioni.it';
-            const nomeCognome = document.getElementById('nomeCognome').value;
-            const fornitoreEnergia = document.getElementById('fornitoreEnergia').value;
-            const fornitoreGas = document.getElementById('fornitoreGas').value;
-            const risultatoEnergia = document.getElementById('risultatoEnergia').innerText;
-            const risultatoNettoEnergia = document.getElementById('risultatoNettoEnergia').innerText;
-            const risultatoGas = document.getElementById('risultatoGas').innerText;
+    const email = 'd.dimauro@ddm-soluzioni.it';
+    const nomeCognome = document.getElementById('nomeCognome').value;
+    let corpoEmail = `Nome e Cognome: ${nomeCognome}\n`;
 
-            const corpoEmail = `
-                Nome e Cognome: ${nomeCognome}\n
-                Attuale Fornitore Energia: ${fornitoreEnergia}\n
-                Risultato Energia: ${risultatoEnergia}\n
-                ${risultatoNettoEnergia}\n
-                Attuale Fornitore Gas: ${fornitoreGas}\n
-                Risultato Gas: ${risultatoGas}\n
-                Posso risparmiare??
-            `;
+    const fornitoreEnergia = document.getElementById('fornitoreEnergia').value;
+    const risultatoEnergia = document.getElementById('risultatoEnergia').innerText;
+    const risultatoNettoEnergia = document.getElementById('risultatoNettoEnergia').innerText;
 
-            window.location.href = `mailto:${email}?subject=Risultato Calcolatore Energia e Gas&body=${encodeURIComponent(corpoEmail)}`;
-        }
+    if (fornitoreEnergia && risultatoEnergia) {
+        corpoEmail += `\nAttuale Fornitore Energia: ${fornitoreEnergia}\n${risultatoEnergia}\n${risultatoNettoEnergia}\n`;
+    }
+
+    const fornitoreGas = document.getElementById('fornitoreGas').value;
+    const risultatoGas = document.getElementById('risultatoGas').innerText;
+
+    if (fornitoreGas && risultatoGas) {
+        corpoEmail += `\nAttuale Fornitore Gas: ${fornitoreGas}\n${risultatoGas}\n`;
+    }
+
+    corpoEmail += `\nPosso risparmiare??`;
+
+    window.location.href = `mailto:${email}?subject=Risultato Calcolatore Energia e Gas&body=${encodeURIComponent(corpoEmail)}`;
+}
+
 
         function inviaWhatsApp() {
-            const nomeCognome = document.getElementById('nomeCognome').value;
-            const fornitoreEnergia = document.getElementById('fornitoreEnergia').value;
-            const fornitoreGas = document.getElementById('fornitoreGas').value;
-            const risultatoEnergia = document.getElementById('risultatoEnergia').innerText;
-            const risultatoNettoEnergia = document.getElementById('risultatoNettoEnergia').innerText;
-            const risultatoGas = document.getElementById('risultatoGas').innerText;
+    const nomeCognome = document.getElementById('nomeCognome').value;
+    let testoWhatsApp = `Nome e Cognome: ${nomeCognome}\n`;
 
-            const testoWhatsApp = `Nome e Cognome: ${nomeCognome}\nAttuale Fornitore Energia: ${fornitoreEnergia}\n${risultatoEnergia}\n${risultatoNettoEnergia}\nAttuale Fornitore Gas: ${fornitoreGas}\n${risultatoGas}\nPosso risparmiare??`;
+    const fornitoreEnergia = document.getElementById('fornitoreEnergia').value;
+    const risultatoEnergia = document.getElementById('risultatoEnergia').innerText;
+    const risultatoNettoEnergia = document.getElementById('risultatoNettoEnergia').innerText;
 
-            const numeroWhatsApp = '393346395727';
-            window.open(`https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(testoWhatsApp)}`, '_blank');
-        }
+    if (fornitoreEnergia && risultatoEnergia) {
+        testoWhatsApp += `\nAttuale Fornitore Energia: ${fornitoreEnergia}\n${risultatoEnergia}\n${risultatoNettoEnergia}\n`;
+    }
+
+    const fornitoreGas = document.getElementById('fornitoreGas').value;
+    const risultatoGas = document.getElementById('risultatoGas').innerText;
+
+    if (fornitoreGas && risultatoGas) {
+        testoWhatsApp += `\nAttuale Fornitore Gas: ${fornitoreGas}\n${risultatoGas}\n`;
+    }
+
+    testoWhatsApp += `\nPosso risparmiare??`;
+
+    const numeroWhatsApp = '393346395727';
+    window.open(`https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(testoWhatsApp)}`, '_blank');
+}
+
 
         function verificaCampi() {
             const nomeCognome = document.getElementById('nomeCognome').value;
