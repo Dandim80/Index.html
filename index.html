@@ -151,8 +151,8 @@
             const costoFinale = costoMateria / kwFatturati;
             const costoNetto = costoFinale * 0.9;
 
-            document.getElementById('risultatoEnergia').innerText = `Costo per kWh - tenuto conto anche delle spese di commercializzazione: €${costoFinale.toFixed(2)}`;
-            document.getElementById('risultatoNettoEnergia').innerText = `Costo per kWh al netto delle perdite di rete - tenuto conto anche delle spese di commercializzazione: €${costoNetto.toFixed(2)}`;
+            document.getElementById('risultatoEnergia').innerText = `Costo per kWh - considerate anche le spese di commercializzazione: €${costoFinale.toFixed(2)}`;
+            document.getElementById('risultatoNettoEnergia').innerText = `Costo per kWh al netto delle perdite di rete - considerate anche le spese di commercializzazione: €${costoNetto.toFixed(2)}`;
 
             verificaCampi();
         }
@@ -168,7 +168,7 @@
 
             const costoFinale = costoMateria / mcFatturati;
 
-            document.getElementById('risultatoGas').innerText = `Costo per mc - tenuto conto anche delle spese di commercializzazione: €${costoFinale.toFixed(2)}`;
+            document.getElementById('risultatoGas').innerText = `Costo per mc - considerate anche le spese di commercializzazione: €${costoFinale.toFixed(2)}`;
 
             verificaCampi();
         }
