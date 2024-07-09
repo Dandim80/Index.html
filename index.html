@@ -93,6 +93,12 @@
     <div class="container">
         <h1 class="logo">PAGOTROPPO.IT <br><span class="subtext">by DDM Soluzioni</span></h1>
         <h2 class="subtitle">Calcolatore del costo al kW per le abitazioni</h2>
+        <!-- Barra di avanzamento energia -->
+<div>
+    <label>Progresso Energia:</label>
+    <div id="progressContainerEnergia" style="width: 100%; background-color: #f3f3f3;">
+        <div id="progressBarEnergia" style="width: 0%; height: 30px; background-color: #4caf50; text-align: center; color: white;">0%</div>
+    </div>
         <label for="fornitoreEnergia">Attuale Fornitore Energia?</label>
         <input type="text" id="fornitoreEnergia" placeholder="Fornitore Energia" required>
         <label for="costoMateriaEnergia">Costo Materia Energia (presente in bolletta, senza oneri, trasporto, ecc.)</label>
@@ -116,6 +122,12 @@
 
         <!-- Sezione calcolo gas -->
         <h2 class="subtitle">Calcolatore del costo al mc per le abitazioni</h2>
+        <div>
+    <label>Progresso Gas:</label>
+    <div id="progressContainerGas" style="width: 100%; background-color: #f3f3f3;">
+        <div id="progressBarGas" style="width: 0%; height: 30px; background-color: #4caf50; text-align: center; color: white;">0%</div>
+    </div>
+</div>
         <label for="fornitoreGas">Attuale Fornitore Gas?</label>
         <input type="text" id="fornitoreGas" placeholder="Fornitore Gas" required>
         <label for="costoMateriaGas">Costo Materia Gas (presente in bolletta, senza oneri, trasporto, ecc.)</label>
@@ -143,6 +155,8 @@
         
         <label for="referente">Chi mi ha girato il link del calcolatore?</label>
         <input type="text" id="referente" placeholder="sono amico di.. sono collega di.. sono parente di.. ecc.." required>
+
+</div>
         
         <button id="inviaWhatsApp" onclick="inviaWhatsApp()" disabled>Invia via WhatsApp</button>
         <button id="inviaEmail" onclick="inviaRisultato()" disabled>Invia Risultato via Email</button>
@@ -267,31 +281,54 @@ function inviaWhatsApp() {
 
 
         function verificaCampi() {
-            const nomeCognome = document.getElementById('nomeCognome').value;
-            const fornitoreEnergia = document.getElementById('fornitoreEnergia').value;
-            const costoMateriaEnergia = document.getElementById('costoMateriaEnergia').value;
-            const kwFatturati = document.getElementById('kwFatturati').value;
-            const risultatoEnergia = document.getElementById('risultatoEnergia').innerText;
-            const risultatoNettoEnergia = document.getElementById('risultatoNettoEnergia').innerText;
+    const nomeCognome = document.getElementById('nomeCognome').value;
+    const referente = document.getElementById('referente').value;
+    const fornitoreEnergia = document.getElementById('fornitoreEnergia').value;
+    const costoMateriaEnergia = document.getElementById('costoMateriaEnergia').value;
+    const kwFatturati = document.getElementById('kwFatturati').value;
+    const risultatoEnergia = document.getElementById('risultatoEnergia').innerText;
+    const risultatoNettoEnergia = document.getElementById('risultatoNettoEnergia').innerText;
 
-            const fornitoreGas = document.getElementById('fornitoreGas').value;
-            const costoMateriaGas = document.getElementById('costoMateriaGas').value;
-            const mcFatturati = document.getElementById('mcFatturati').value;
-            const risultatoGas = document.getElementById('risultatoGas').innerText;
+    const fornitoreGas = document.getElementById('fornitoreGas').value;
+    const costoMateriaGas = document.getElementById('costoMateriaGas').value;
+    const mcFatturati = document.getElementById('mcFatturati').value;
+    const risultatoGas = document.getElementById('risultatoGas').innerText;
 
-            const emailButton = document.getElementById('inviaEmail');
-            const whatsappButton = document.getElementById('inviaWhatsApp');
+    const emailButton = document.getElementById('inviaEmail');
+    const whatsappButton = document.getElementById('inviaWhatsApp');
 
-            if ((nomeCognome && ((fornitoreEnergia && costoMateriaEnergia && kwFatturati) || (fornitoreGas && costoMateriaGas && mcFatturati))) && (risultatoEnergia || risultatoGas)) {
-                emailButton.disabled = false;
-                whatsappButton.disabled = false;
-            } else {
-                emailButton.disabled = true;
-                whatsappButton.disabled = true;
-            }
-        }
+    let progressEnergia = 0;
+    let progressGas = 0;
 
-        document.querySelectorAll('input').forEach(input => {
-            input.addEventListener('input', verificaCampi);
-        });
+    
+    if (fornitoreEnergia) progressEnergia += 25;
+    if (costoMateriaEnergia) progressEnergia += 25;
+    if (kwFatturati) progressEnergia += 25;
+    if (risultatoEnergia) progressEnergia += 25;
+
+
+    if (fornitoreGas) progressGas += 25;
+    if (costoMateriaGas) progressGas += 25;
+    if (mcFatturati) progressGas += 25;
+    if (risultatoGas) progressGas += 25;
+
+    document.getElementById('progressBarEnergia').style.width = progressEnergia + '%';
+    document.getElementById('progressBarEnergia').innerText = progressEnergia + '%';
+    
+    document.getElementById('progressBarGas').style.width = progressGas + '%';
+    document.getElementById('progressBarGas').innerText = progressGas + '%';
+
+    if ((nomeCognome && ((fornitoreEnergia && costoMateriaEnergia && kwFatturati) || (fornitoreGas && costoMateriaGas && mcFatturati))) && (risultatoEnergia || risultatoGas)) {
+        emailButton.disabled = false;
+        whatsappButton.disabled = false;
+    } else {
+        emailButton.disabled = true;
+        whatsappButton.disabled = true;
+    }
+}
+
+document.querySelectorAll('input').forEach(input => {
+    input.addEventListener('input', verificaCampi);
+});
+
     </script>
