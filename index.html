@@ -205,7 +205,7 @@
     verificaCampi();
 }
 
-        function inviaRisultato() {
+function inviaRisultato() {
     const email = 'd.dimauro@ddm-soluzioni.it';
     const nomeCognome = document.getElementById('nomeCognome').value;
     const referente = document.getElementById('referente').value;
@@ -215,7 +215,11 @@
     const risultatoNettoEnergia = document.getElementById('risultatoNettoEnergia').innerText;
     const risultatoGas = document.getElementById('risultatoGas').innerText;
 
-    let corpoEmail = `Nome e Cognome: ${nomeCognome}\nChi mi ha girato il link del calcolatore: ${referente}\n`;
+    let corpoEmail = `Nome e Cognome: ${nomeCognome}\n`;
+    
+    if (referente) {
+        corpoEmail += `Chi mi ha girato il link del calcolatore: ${referente}\n`;
+    }
 
     if (fornitoreEnergia) {
         corpoEmail += `Attuale Fornitore Energia: ${fornitoreEnergia}\nRisultato Energia: ${risultatoEnergia}\n${risultatoNettoEnergia}\n`;
@@ -230,8 +234,7 @@
     window.location.href = `mailto:${email}?subject=Risultato Calcolatore Energia e Gas&body=${encodeURIComponent(corpoEmail)}`;
 }
 
-
-        function inviaWhatsApp() {
+function inviaWhatsApp() {
     const nomeCognome = document.getElementById('nomeCognome').value;
     const referente = document.getElementById('referente').value;
     const fornitoreEnergia = document.getElementById('fornitoreEnergia').value;
@@ -240,7 +243,11 @@
     const risultatoNettoEnergia = document.getElementById('risultatoNettoEnergia').innerText;
     const risultatoGas = document.getElementById('risultatoGas').innerText;
 
-    let testoWhatsApp = `Nome e Cognome: ${nomeCognome}\nChi mi ha girato il link del calcolatore: ${referente}\n`;
+    let testoWhatsApp = `Nome e Cognome: ${nomeCognome}\n`;
+    
+    if (referente) {
+        testoWhatsApp += `Chi mi ha girato il link del calcolatore: ${referente}\n`;
+    }
 
     if (fornitoreEnergia) {
         testoWhatsApp += `Attuale Fornitore Energia: ${fornitoreEnergia}\n${risultatoEnergia}\n${risultatoNettoEnergia}\n`;
@@ -255,6 +262,7 @@
     const numeroWhatsApp = '393346395727';
     window.open(`https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(testoWhatsApp)}`, '_blank');
 }
+
 
 
 
