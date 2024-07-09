@@ -137,11 +137,16 @@
         </div>
 
         <!-- Invio risultati -->
-        <p class="cta-text">Ok.. Ora vuoi sapere se stai pagando troppo? Invia il risultato via email o via WhatsApp</p>
+                <p class="cta-text">Ok.. Ora vuoi sapere se stai pagando troppo? Invia il risultato via email o via WhatsApp</p>
         <label for="nomeCognome">Nome e Cognome</label>
         <input type="text" id="nomeCognome" placeholder="Nome e Cognome" required>
+        
+        <label for="referente">Chi mi ha girato il link del calcolatore?</label>
+        <input type="text" id="referente" placeholder="sono amico di.. sono collega di.. sono parente di.. ecc.." required>
+        
         <button id="inviaWhatsApp" onclick="inviaWhatsApp()" disabled>Invia via WhatsApp</button>
         <button id="inviaEmail" onclick="inviaRisultato()" disabled>Invia Risultato via Email</button>
+
     </div>
 
     <script>
