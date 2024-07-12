@@ -87,139 +87,159 @@
             font-size: 1em;
             color: #555;
         }
+        .section {
+            display: none;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1 class="logo">PAGOTROPPO.IT <br><span class="subtext">by DDM Soluzioni</span></h1>
-        <h2 class="subtitle">Calcolatore del costo al kW per le abitazioni</h2>
-        <!-- Barra di avanzamento energia -->
-<div>
-    <label>Progresso Energia:</label>
-    <div id="progressContainerEnergia" style="width: 100%; background-color: #f3f3f3;">
-        <div id="progressBarEnergia" style="width: 0%; height: 30px; background-color: #4caf50; text-align: center; color: white;">0%</div>
-    </div><br>
-        <label for="fornitoreEnergia">Attuale Fornitore Energia?</label>
-        <input type="text" id="fornitoreEnergia" placeholder="Fornitore Energia" required>
-        <label for="costoMateriaEnergia">Costo Materia Energia (presente in bolletta, senza oneri, trasporto, ecc.)</label>
-        <input type="number" id="costoMateriaEnergia" placeholder="€" step="0.01" required>
-        <p>Ho una bolletta mensile o bimestrale?</p>
+        <h2 class="subtitle">Calcolatore del costo per le abitazioni</h2> Clicca sui pulsanti Energia e/o Gas per trovare i costi della tua bolletta<br>
         <div class="radio-group">
-            <label>
-                <input type="radio" name="tipoBollettaEnergia" value="mensile"> Mensile
-            </label>
-            <label>
-                <input type="radio" name="tipoBollettaEnergia" value="bimestrale" checked> Bimestrale
-            </label>
+            <button id="bottoneEnergia">Energia</button>
+            <button id="bottoneGas">Gas</button>
         </div>
-        <label for="kwFatturati">Kilowatt Fatturati</label>
-        <input type="number" id="kwFatturati" placeholder="kWh" step="0.01" required>
-        <button onclick="calcolaCostoPerKWh()">Calcola</button>
-        <div class="results">
-            <p id="risultatoEnergia"></p>
-            <p id="risultatoNettoEnergia"></p>
+        <div id="energiaSezione" class="section">
+            <label for="fornitoreEnergia">Attuale Fornitore Energia?</label>
+            <input type="text" id="fornitoreEnergia" placeholder="Fornitore Energia" required>
+            <label for="costoMateriaEnergia">Costo Materia Energia (presente in bolletta, senza oneri, trasporto, ecc.)</label>
+            <input type="number" id="costoMateriaEnergia" placeholder="€" step="0.01" required>
+            <p>Ho una bolletta mensile o bimestrale?</p>
+            <div class="radio-group">
+                <label>
+                    <input type="radio" name="tipoBollettaEnergia" value="mensile"> Mensile
+                </label>
+                <label>
+                    <input type="radio" name="tipoBollettaEnergia" value="bimestrale" checked> Bimestrale
+                </label>
+            </div>
+            <label for="kwFatturati">Kilowatt Fatturati</label>
+            <input type="number" id="kwFatturati" placeholder="kWh" step="0.01" required>
+            <button onclick="calcolaCostoPerKWh()">Calcola</button>
+            <div class="results">
+                <p id="risultatoEnergia"></p>
+                <p id="risultatoNettoEnergia"></p>
+            </div>
         </div>
-
-        <!-- Sezione calcolo gas -->
-        <h2 class="subtitle">Calcolatore del costo al mc per le abitazioni</h2>
-        <div>
-    <label>Progresso Gas:</label>
-    <div id="progressContainerGas" style="width: 100%; background-color: #f3f3f3;">
-        <div id="progressBarGas" style="width: 0%; height: 30px; background-color: #4caf50; text-align: center; color: white;">0%</div>
-    </div><br>
-</div>
-        <label for="fornitoreGas">Attuale Fornitore Gas?</label>
-        <input type="text" id="fornitoreGas" placeholder="Fornitore Gas" required>
-        <label for="costoMateriaGas">Costo Materia Gas (presente in bolletta, senza oneri, trasporto, ecc.)</label>
-        <input type="number" id="costoMateriaGas" placeholder="€" step="0.01">
-        <p>Ho una bolletta mensile o bimestrale?</p>
-        <div class="radio-group">
-            <label>
-                <input type="radio" name="tipoBollettaGas" value="mensile"> Mensile
-            </label>
-            <label>
-                <input type="radio" name="tipoBollettaGas" value="bimestrale" checked> Bimestrale
-            </label>
-        </div>
-        <label for="mcFatturati">Metri cubi Fatturati</label>
-        <input type="number" id="mcFatturati" placeholder="mc" step="0.01">
-        <button onclick="calcolaCostoPerMc()">Calcola</button>
-        <div class="results">
-            <p id="risultatoGas"></p>
+        <div id="gasSezione" class="section">
+            <label for="fornitoreGas">Attuale Fornitore Gas?</label>
+            <input type="text" id="fornitoreGas" placeholder="Fornitore Gas" required>
+            <label for="costoMateriaGas">Costo Materia Gas (presente in bolletta, senza oneri, trasporto, ecc.)</label>
+            <input type="number" id="costoMateriaGas" placeholder="€" step="0.01" required>
+            <p>Ho una bolletta mensile o bimestrale?</p>
+            <div class="radio-group">
+                <label>
+                    <input type="radio" name="tipoBollettaGas" value="mensile"> Mensile
+                </label>
+                <label>
+                    <input type="radio" name="tipoBollettaGas" value="bimestrale" checked> Bimestrale
+                </label>
+            </div>
+            <label for="mcFatturati">Metri cubi Fatturati</label>
+            <input type="number" id="mcFatturati" placeholder="mc" step="0.01" required>
+            <button onclick="calcolaCostoPerMc()">Calcola</button>
+            <div class="results">
+                <p id="risultatoGas"></p>
+            </div>
         </div>
 
         <!-- Invio risultati -->
-                <p class="cta-text">Ok.. Ora vuoi sapere se stai pagando troppo? Invia il risultato via email o via WhatsApp</p>
+        <p class="cta-text" style="display: none;">Ok finito.. Ora vuoi sapere se stai pagando troppo? <br> Scrivi Nome e Cognome, scegli un pulsante fra Whatsapp o Email <br> ed invia i risultati</p>
         <label for="nomeCognome">Nome e Cognome</label>
         <input type="text" id="nomeCognome" placeholder="Nome e Cognome" required>
         
         <label for="referente">Chi mi ha girato il link del calcolatore?</label>
-        <input type="text" id="referente" placeholder="sono amico di.. sono collega di.. sono parente di.. ecc.." required>
+<input type="text" id="referente" placeholder="sono amico di.. sono collega di.. sono parente di.. ecc..">
+       <button id="inviaWhatsApp" onclick="inviaWhatsApp()" disabled>Invia via WhatsApp</button>
+<button id="inviaEmail" onclick="inviaRisultato()" disabled>Invia Risultato via Email</button>
 
-</div>
-        
-        <button id="inviaWhatsApp" onclick="inviaWhatsApp()" disabled>Invia via WhatsApp</button>
-        <button id="inviaEmail" onclick="inviaRisultato()" disabled>Invia Risultato via Email</button>
+<script>
+    function mostraSezione(sezione) {
+        const energiaSezione = document.getElementById('energiaSezione');
+        const gasSezione = document.getElementById('gasSezione');
+        const ctaText = document.querySelector('.cta-text');
 
-    </div>
+        if (sezione === 'energia') {
+            energiaSezione.style.display = energiaSezione.style.display === 'block' ? 'none' : 'block';
+        } else if (sezione === 'gas') {
+            gasSezione.style.display = gasSezione.style.display === 'block' ? 'none' : 'block';
+        }
 
-    <script>
- function calcolaCostoPerKWh() {
-    const costoMateria = parseFloat(document.getElementById('costoMateriaEnergia').value);
-    const kwFatturati = parseFloat(document.getElementById('kwFatturati').value);
-    const tipoBollettaEnergia = document.querySelector('input[name="tipoBollettaEnergia"]:checked').value;
-
-    if (isNaN(costoMateria) || isNaN(kwFatturati) || kwFatturati <= 0) {
-        alert("Inserisci valori validi per l'energia.");
-        return;
+        if (energiaSezione.style.display === 'block' || gasSezione.style.display === 'block') {
+            ctaText.style.display = 'block';
+        } else {
+            ctaText.style.display = 'none';
+        }
     }
 
-    // Sottrazione dell'importo fisso in base alla frequenza della bolletta
-    const importoFisso = tipoBollettaEnergia === 'mensile' ? 10 : 20;
-    const costoEffettivo = costoMateria - importoFisso;
+    function verificaCampi() {
+        const nomeCognome = document.getElementById('nomeCognome').value.trim();
+        const risultatoEnergia = document.getElementById('risultatoEnergia').innerText.trim();
+        const risultatoGas = document.getElementById('risultatoGas').innerText.trim();
 
-    if (costoEffettivo <= 0) {
-        alert("Il costo effettivo non può essere zero o negativo. Verifica i dati inseriti.");
-        return;
+        if (nomeCognome && (risultatoEnergia || risultatoGas)) {
+            document.getElementById('inviaWhatsApp').disabled = false;
+            document.getElementById('inviaEmail').disabled = false;
+        } else {
+            document.getElementById('inviaWhatsApp').disabled = true;
+            document.getElementById('inviaEmail').disabled = true;
+        }
     }
 
-    const costoFinale = costoEffettivo / kwFatturati;
-    const costoNetto = costoFinale * 0.9;
+    function calcolaCostoPerKWh() {
+        const costoMateria = parseFloat(document.getElementById('costoMateriaEnergia').value);
+        const kwFatturati = parseFloat(document.getElementById('kwFatturati').value);
+        const tipoBollettaEnergia = document.querySelector('input[name="tipoBollettaEnergia"]:checked').value;
 
-    document.getElementById('risultatoEnergia').innerText = `Costo per kWh - già considerate le spese di commercializzazione: €${costoFinale.toFixed(2)}`;
-    document.getElementById('risultatoNettoEnergia').innerText = `Costo per kWh al netto delle perdite di rete - già considerate le spese di commercializzazione: €${costoNetto.toFixed(2)}`;
+        if (isNaN(costoMateria) || isNaN(kwFatturati) || kwFatturati <= 0) {
+            alert("Inserisci valori validi per l'energia.");
+            return;
+        }
 
-    verificaCampi();
-}
+        const importoFisso = tipoBollettaEnergia === 'mensile' ? 10 : 20;
+        const costoEffettivo = costoMateria - importoFisso;
 
+        if (costoEffettivo <= 0) {
+            alert("Il costo effettivo non può essere zero o negativo. Verifica i dati inseriti.");
+            return;
+        }
 
-        function calcolaCostoPerMc() {
-    const costoMateria = parseFloat(document.getElementById('costoMateriaGas').value);
-    const mcFatturati = parseFloat(document.getElementById('mcFatturati').value);
-    const tipoBollettaGas = document.querySelector('input[name="tipoBollettaGas"]:checked').value;
+        const costoFinale = costoEffettivo / kwFatturati;
+        const costoNetto = costoFinale * 0.9;
 
-    if (isNaN(costoMateria) || isNaN(mcFatturati) || mcFatturati <= 0) {
-        alert("Inserisci valori validi per il gas.");
-        return;
+        document.getElementById('risultatoEnergia').innerText = `Costo per kWh - già considerate le spese di commercializzazione: €${costoFinale.toFixed(2)}`;
+        document.getElementById('risultatoNettoEnergia').innerText = `Costo per kWh al netto delle perdite di rete - già considerate le spese di commercializzazione: €${costoNetto.toFixed(2)}`;
+
+        verificaCampi();
     }
 
-    // Sottrazione dell'importo fisso in base alla frequenza della bolletta
-    const importoFisso = tipoBollettaGas === 'mensile' ? 10 : 20;
-    const costoEffettivo = costoMateria - importoFisso;
+    function calcolaCostoPerMc() {
+        const costoMateria = parseFloat(document.getElementById('costoMateriaGas').value);
+        const mcFatturati = parseFloat(document.getElementById('mcFatturati').value);
+        const tipoBollettaGas = document.querySelector('input[name="tipoBollettaGas"]:checked').value;
 
-    if (costoEffettivo <= 0) {
-        alert("Il costo effettivo non può essere zero o negativo. Verifica i dati inseriti.");
-        return;
+        if (isNaN(costoMateria) || isNaN(mcFatturati) || mcFatturati <= 0) {
+            alert("Inserisci valori validi per il gas.");
+            return;
+        }
+
+        const importoFisso = tipoBollettaGas === 'mensile' ? 10 : 20;
+        const costoEffettivo = costoMateria - importoFisso;
+
+        if (costoEffettivo <= 0) {
+            alert("Il costo effettivo non può essere zero o negativo. Verifica i dati inseriti.");
+            return;
+        }
+
+        const costoFinale = costoEffettivo / mcFatturati;
+        const costoNetto = costoFinale * 0.9;
+
+        document.getElementById('risultatoGas').innerText = `Costo per mc - già considerate le spese di commercializzazione: €${costoFinale.toFixed(2)}`;
+
+        verificaCampi();
     }
-
-    const costoFinale = costoEffettivo / mcFatturati;
-
-    document.getElementById('risultatoGas').innerText = `Costo per mc - già considerate le spese di commercializzazione: €${costoFinale.toFixed(2)}`;
-
-    verificaCampi();
-}
-
-function inviaRisultato() {
+    function inviaRisultato() {
     const email = 'd.dimauro@ddm-soluzioni.it';
     const nomeCognome = document.getElementById('nomeCognome').value;
     const referente = document.getElementById('referente').value;
@@ -277,58 +297,11 @@ function inviaWhatsApp() {
     window.open(`https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(testoWhatsApp)}`, '_blank');
 }
 
+    document.getElementById('bottoneEnergia').addEventListener('click', () => mostraSezione('energia'));
+    document.getElementById('bottoneGas').addEventListener('click', () => mostraSezione('gas'));
+    document.getElementById('nomeCognome').addEventListener('input', verificaCampi);
+</script>
 
 
-
-        function verificaCampi() {
-    const nomeCognome = document.getElementById('nomeCognome').value;
-    const referente = document.getElementById('referente').value;
-    const fornitoreEnergia = document.getElementById('fornitoreEnergia').value;
-    const costoMateriaEnergia = document.getElementById('costoMateriaEnergia').value;
-    const kwFatturati = document.getElementById('kwFatturati').value;
-    const risultatoEnergia = document.getElementById('risultatoEnergia').innerText;
-    const risultatoNettoEnergia = document.getElementById('risultatoNettoEnergia').innerText;
-
-    const fornitoreGas = document.getElementById('fornitoreGas').value;
-    const costoMateriaGas = document.getElementById('costoMateriaGas').value;
-    const mcFatturati = document.getElementById('mcFatturati').value;
-    const risultatoGas = document.getElementById('risultatoGas').innerText;
-
-    const emailButton = document.getElementById('inviaEmail');
-    const whatsappButton = document.getElementById('inviaWhatsApp');
-
-    let progressEnergia = 0;
-    let progressGas = 0;
-
-    
-    if (fornitoreEnergia) progressEnergia += 33;
-    if (costoMateriaEnergia) progressEnergia += 33;
-    if (kwFatturati) progressEnergia += 34;
-    //if (risultatoEnergia) progressEnergia += 25;
-
-
-    if (fornitoreGas) progressGas += 33;
-    if (costoMateriaGas) progressGas += 33;
-    if (mcFatturati) progressGas += 34;
-    //if (risultatoGas) progressGas += 25;
-
-    document.getElementById('progressBarEnergia').style.width = progressEnergia + '%';
-    document.getElementById('progressBarEnergia').innerText = progressEnergia + '%';
-    
-    document.getElementById('progressBarGas').style.width = progressGas + '%';
-    document.getElementById('progressBarGas').innerText = progressGas + '%';
-
-    if ((nomeCognome && ((fornitoreEnergia && costoMateriaEnergia && kwFatturati) || (fornitoreGas && costoMateriaGas && mcFatturati))) && (risultatoEnergia || risultatoGas)) {
-        emailButton.disabled = false;
-        whatsappButton.disabled = false;
-    } else {
-        emailButton.disabled = true;
-        whatsappButton.disabled = true;
-    }
-}
-
-document.querySelectorAll('input').forEach(input => {
-    input.addEventListener('input', verificaCampi);
-});
-
-    </script>
+</body>
+</html>
