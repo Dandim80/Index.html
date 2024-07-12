@@ -95,10 +95,10 @@
 <body>
     <div class="container">
         <h1 class="logo">PAGOTROPPO.IT <br><span class="subtext">by DDM Soluzioni</span></h1>
-        <h2 class="subtitle">Calcolatore del costo per le abitazioni</h2> <p align="center">Clicca sui pulsanti per iniziare <br>
+        <h2 class="subtitle">Calcolatore per clienti domestici</h2> <p align="center">Sto forse spendendo troppo?? Clicca sui pulsanti per capirlo <br>
         <div class="radio-group">
-            <button id="bottoneEnergia">Costo al Kw (Luce)</button>
-            <button id="bottoneGas">Costo al Mc (Gas)</button>
+            <button id="bottoneEnergia">Quanto mi costa il Kw (Luce)</button>
+            <button id="bottoneGas">Quanto mi costa al Mc (Gas)</button>
         </div>
         <div id="energiaSezione" class="section">
             <label for="fornitoreEnergia">Attuale Fornitore Energia?</label>
@@ -205,7 +205,7 @@
             return;
         }
 
-        const costoFinale = costoEffettivo / kwFatturati;
+        const costoFinale = costoEffettivo / kwFatturati; 
         const costoNetto = costoFinale * 0.9;
 
         document.getElementById('risultatoEnergia').innerText = `Costo per kWh - già considerate le spese di commercializzazione: €${costoFinale.toFixed(3)}`;
