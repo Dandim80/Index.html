@@ -208,8 +208,8 @@
         const costoFinale = costoEffettivo / kwFatturati;
         const costoNetto = costoFinale * 0.9;
 
-        document.getElementById('risultatoEnergia').innerText = `Costo per kWh - già considerate le spese di commercializzazione: €${costoFinale.toFixed(2)}`;
-        document.getElementById('risultatoNettoEnergia').innerText = `Costo per kWh al netto delle perdite di rete - già considerate le spese di commercializzazione: €${costoNetto.toFixed(2)}`;
+        document.getElementById('risultatoEnergia').innerText = `Costo per kWh - già considerate le spese di commercializzazione: €${costoFinale.toFixed(3)}`;
+        document.getElementById('risultatoNettoEnergia').innerText = `Costo per kWh al netto delle perdite di rete - già considerate le spese di commercializzazione: €${costoNetto.toFixed(3)}`;
 
         verificaCampi();
     }
@@ -235,7 +235,7 @@
         const costoFinale = costoEffettivo / mcFatturati;
         const costoNetto = costoFinale * 0.9;
 
-        document.getElementById('risultatoGas').innerText = `Costo per mc - già considerate le spese di commercializzazione: €${costoFinale.toFixed(2)}`;
+        document.getElementById('risultatoGas').innerText = `Costo per mc - già considerate le spese di commercializzazione: €${costoFinale.toFixed(3)}`;
 
         verificaCampi();
     }
