@@ -40,6 +40,13 @@
             color: #333;
             margin-bottom: 20px;
         }
+        .cta-text {
+    display: none;
+}
+.cta-text.visible {
+    display: block;
+}
+
         label {
             display: block;
             margin-bottom: 10px;
@@ -217,7 +224,8 @@
         </div>
 
         <!-- Invio risultati -->
-        <p class="cta-text" style="display: none;">Ok finito.. Ora vuoi sapere finalmente se stai pagando troppo? <br> Scrivi Nome e Cognome, scegli un pulsante fra Whatsapp o Email <br> ed invia i risultati</p>
+    <p class="cta-text">Ok finito.. Ora vuoi sapere finalmente se stai pagando troppo? <br> Scrivi Nome e Cognome, scegli un pulsante fra Whatsapp o Email <br> ed invia i risultati</p>
+
         <label for="nomeCognome">Nome e Cognome</label>
         <input type="text" id="nomeCognome" placeholder="Nome e Cognome" required>
         
@@ -228,22 +236,15 @@
 
 <script>
     function mostraSezione(sezione) {
-        const energiaSezione = document.getElementById('energiaSezione');
-        const gasSezione = document.getElementById('gasSezione');
-        const ctaText = document.querySelector('.cta-text');
+    const energiaSezione = document.getElementById('energiaSezione');
+    const gasSezione = document.getElementById('gasSezione');
 
-        if (sezione === 'energia') {
-            energiaSezione.style.display = energiaSezione.style.display === 'block' ? 'none' : 'block';
-        } else if (sezione === 'gas') {
-            gasSezione.style.display = gasSezione.style.display === 'block' ? 'none' : 'block';
-        }
-
-        if (energiaSezione.style.display === 'block' || gasSezione.style.display === 'block') {
-            ctaText.style.display = 'block';
-        } else {
-            ctaText.style.display = 'none';
-        }
+    if (sezione === 'energia') {
+        energiaSezione.style.display = energiaSezione.style.display === 'block' ? 'none' : 'block';
+    } else if (sezione === 'gas') {
+        gasSezione.style.display = gasSezione.style.display === 'block' ? 'none' : 'block';
     }
+}
 
     function verificaCampi() {
         const nomeCognome = document.getElementById('nomeCognome').value.trim();
@@ -284,6 +285,7 @@
         document.getElementById('risultatoNettoEnergia').innerText = `Costo per kWh al netto delle perdite di rete - già considerate le spese di commercializzazione: €${costoNetto.toFixed(3)}`;
 
         verificaCampi();
+        mostraCtaText();
     }
 
     function calcolaCostoPerMc() {
@@ -296,7 +298,7 @@
             return;
         }
 
-        const importoFisso = tipoBollettaGas === 'mensile' ? 10 : 20;
+        const importoFisso = tipoBollettaGas === 'mensile' ? 10 : 20; 
         const costoEffettivo = costoMateria - importoFisso;
 
         if (costoEffettivo <= 0) {
@@ -310,7 +312,16 @@
         document.getElementById('risultatoGas').innerText = `Costo per mc - già considerate le spese di commercializzazione: €${costoFinale.toFixed(3)}`;
 
         verificaCampi();
+        mostraCtaText();
     }
+    function mostraCtaText() {
+        const ctaText = document.querySelector('.cta-text');
+        if (!ctaText.classList.contains('visible')) {
+            ctaText.classList.add('visible');
+            ctaText.style.display = 'block';
+        }
+    }
+    
     function inviaRisultato() {
     const email = 'd.dimauro@ddm-soluzioni.it';
     const nomeCognome = document.getElementById('nomeCognome').value;
