@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -5,108 +6,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calcolatore Costo Energia e Gas per le abitazioni</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 0;
-            background-color: #f0f0f0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 500px;
-        }
-        h1.logo {
-            text-align: center;
-            font-size: 2em;
-            color: #007bff;
-            margin-bottom: 10px;
-        }
-        h1.logo .subtext {
-            font-size: 0.7em;
-            font-style: italic;
-            color: #007bff;
-            display: block;
-        }
-        h2.subtitle {
-            text-align: center;
-            font-size: 1.2em;
-            color: #333;
-            margin-bottom: 20px;
-        }
-        .cta-text {
-    display: none;
-}
-.cta-text.visible {
-    display: block;
-}
-
-        label {
-            display: block;
-            margin-bottom: 10px;
-        }
-        input[type="number"],
-        input[type="text"] {
-            width: calc(100% - 22px);
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .radio-group {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-.radio-group {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 10px;
-        }
-        .radio-group label {
-            margin: 0 10px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            border: none;
-            color: white;
-            font-size: 16px;
-            border-radius: 50px;
-            cursor: pointer;
-            margin-bottom: 10px;
-            margin: 5px;
-        }
-        button:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
-        }
-        button:hover:not(:disabled) {
-            background-color: #0056b3;
-        }
-        .results {
-            margin-top: 20px;
-        }
-        .cta-text {
-            text-align: center;
-            margin-top: 10px;
-            font-size: 1em;
-            color: #555;
-        }
-        .section {
-            display: none;
-        }
-        label.bold {
-            font-weight: bold;
-        }
-    </style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px; 
+        padding: 0;
+        background-color: #f0f0f0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        max-width: 500px;
+    }
+    h1.logo {
+        text-align: center;
+        font-size: 2em;
+        color: #007bff;
+        margin-bottom: 10px;
+    }
+    h1.logo .subtext {
+        font-size: 0.7em;
+        font-style: italic;
+        color: #007bff;
+        display: block;
+    }
+    h2.subtitle {
+        text-align: center;
+        font-size: 1.2em;
+        color: #333;
+        margin-bottom: 20px;
+    }
+    .cta-text {
+        display: none;
+    }
+    .cta-text.visible {
+        display: block;
+    }
+    label {
+        display: block;
+        margin-bottom: 10px;
+    }
+    input[type="number"],
+    input[type="text"] {
+        width: calc(100% - 22px);
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .radio-group {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 10px;
+    }
+    .radio-group button {
+        margin: 0 5px;
+    }
+    .radio-group button.active {
+        border: 8px solid #ffcc00;
+            }
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        border: none;
+        color: white;
+        font-size: 16px;
+        border-radius: 50px;
+        cursor: pointer;
+        margin-bottom: 10px;
+        margin: 5px;
+    }
+    button:disabled {
+        background-color: #cccccc;
+        cursor: not-allowed;
+    }
+    button:hover:not(:disabled) {
+        background-color: #0056b3;
+    }
+    .results {
+        margin-top: 20px;
+    }
+    .cta-text {
+        text-align: center;
+        margin-top: 10px;
+        font-size: 1em;
+        color: #555;
+        font-weight: bold;
+    }
+    .section {
+        display: none;
+    }
+    label.bold {
+        font-weight: bold;
+    }
+</style>
 </head>
 <body>
     <div class="container">
@@ -235,7 +234,7 @@
         <!-- Invio risultati -->
     <p class="cta-text"><strong>Ok ecco il risultato.. <br>Vuoi sapere se stai pagando troppo? <br> Scrivi Nome e Cognome e scegli un pulsante fra <br>"Invia Whatsapp" o "Invia Email"</p>
 
-        <label for="nomeCognome">Nome e Cognome</label>
+        <label for="nomeCognome">Nome e Cognome</label> 
         <input type="text" id="nomeCognome" placeholder="Nome e Cognome" required>
         
         <label for="referente">Chi mi ha girato il link del calcolatore?</label>
@@ -244,16 +243,21 @@
 <button id="inviaEmail" onclick="inviaRisultato()" disabled>Invia risultati con Email</button>
 
 <script>
-    function mostraSezione(sezione) {
-    const energiaSezione = document.getElementById('energiaSezione');
-    const gasSezione = document.getElementById('gasSezione');
+               function mostraSezione(sezione) {
+                const energiaSezione = document.getElementById('energiaSezione');
+                const gasSezione = document.getElementById('gasSezione');
+                const bottoneEnergia = document.getElementById('bottoneEnergia');
+                const bottoneGas = document.getElementById('bottoneGas');
 
-    if (sezione === 'energia') {
-        energiaSezione.style.display = energiaSezione.style.display === 'block' ? 'none' : 'block';
-    } else if (sezione === 'gas') {
-        gasSezione.style.display = gasSezione.style.display === 'block' ? 'none' : 'block';
-    }
-}
+                if (sezione === 'energia') {
+                    energiaSezione.style.display = energiaSezione.style.display === 'block' ? 'none' : 'block';
+                    bottoneEnergia.classList.toggle('active');
+                } else if (sezione === 'gas') {
+                    gasSezione.style.display = gasSezione.style.display === 'block' ? 'none' : 'block';
+                    bottoneGas.classList.toggle('active');
+                }
+            }
+
 
     function verificaCampi() {
         const nomeCognome = document.getElementById('nomeCognome').value.trim();
