@@ -64,7 +64,6 @@
     justify-content: space-between;
     margin-bottom: 20px;
 }
-
 .radio-group {
             display: flex;
             justify-content: space-around;
@@ -109,7 +108,7 @@
 <body>
     <div class="container">
         <h1 class="logo">PAGOTROPPO.IT <br><span class="subtext">by DDM Soluzioni</span></h1>
-        <h2 class="subtitle">Calcolatore per clienti domestici</h2> <p align="center">Sto forse spendendo troppo?? Clicca sui pulsanti per capirlo <br>
+        <h2 class="subtitle">Calcolatore per clienti domestici</h2> <p align="center">Sto forse spendendo troppo?? <br>Clicca sui pulsanti per capirlo <br>
         <div class="radio-group">
             <button id="bottoneEnergia">Quanto mi costa il Kw (Luce)</button>
             <button id="bottoneGas">Quanto mi costa il Mc (Gas)</button>
@@ -231,15 +230,15 @@
         </div>
 
         <!-- Invio risultati -->
-    <p class="cta-text">Ok finito.. Ora vuoi sapere finalmente se stai pagando troppo? <br> Scrivi Nome e Cognome, scegli un pulsante fra Whatsapp o Email <br> ed invia i risultati</p>
+    <p class="cta-text"><strong>Ok ecco il risultato.. <br>Vuoi sapere se stai pagando troppo? <br> Scrivi Nome e Cognome e scegli un pulsante fra <br>"Invia Whatsapp" o "Invia Email"</p>
 
         <label for="nomeCognome">Nome e Cognome</label>
         <input type="text" id="nomeCognome" placeholder="Nome e Cognome" required>
         
         <label for="referente">Chi mi ha girato il link del calcolatore?</label>
 <input type="text" id="referente" placeholder="sono amico di.. sono collega di.. sono parente di.. ecc..">
-       <button id="inviaWhatsApp" onclick="inviaWhatsApp()" disabled>Invia via WhatsApp</button>
-<button id="inviaEmail" onclick="inviaRisultato()" disabled>Invia Risultato via Email</button>
+       <button id="inviaWhatsApp" onclick="inviaWhatsApp()" disabled>Invia risultati con WhatsApp</button>
+<button id="inviaEmail" onclick="inviaRisultato()" disabled>Invia risultati con Email</button>
 
 <script>
     function mostraSezione(sezione) {
