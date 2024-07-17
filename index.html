@@ -103,6 +103,9 @@
         .section {
             display: none;
         }
+        label.bold {
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -114,9 +117,9 @@
             <button id="bottoneGas">Quanto mi costa il Mc (Gas)</button>
         </div>
         <div id="energiaSezione" class="section">
-            <label for="fornitoreEnergia">Attuale Fornitore Energia?</label>
+            <label for="fornitoreEnergia"class="bold">Attuale Fornitore Energia?</label>
             <input type="text" id="fornitoreEnergia" placeholder="Fornitore Energia" required>
-            <label for="costoMateriaEnergia">Costo Materia Energia (presente in bolletta, senza oneri, trasporto, ecc.)</label>
+            <label for="costoMateriaEnergia"class="bold">Costo Materia Energia (presente in bolletta, senza oneri, trasporto, ecc.)</label>
             <input type="number" id="costoMateriaEnergia" placeholder="€" step="0.01" required>
             <!DOCTYPE html>
 <html lang="it">
@@ -172,7 +175,7 @@
             </div>
         </div>
         <div id="gasSezione" class="section">
-            <label for="fornitoreGas">Attuale Fornitore Gas?</label>
+            <label for="fornitoreGas"class="bold">Attuale Fornitore Gas?</label>
             <input type="text" id="fornitoreGas" placeholder="Fornitore Gas" required>
             <label for="costoMateriaGas">Costo Materia Gas (presente in bolletta, senza oneri, trasporto, ecc.)</label>
             <input type="number" id="costoMateriaGas" placeholder="€" step="0.01" required>
